@@ -2,13 +2,13 @@
 Contributors: dgmike
 Donate link: http://
 Tags: media, oembed, youtube, library
-Requires as least: 3.8.1
+Requires at least: 3.8.1
 Tested up to: 3.8.1
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Creates an media in your library with an youtube, vimeo, hulu, and another oembed media. The plugin will fetch the data and create an media item with this data.
+Creates an media in your library with an youtube, vimeo, hulu, and another oembed media. The plugin will fetch the data and create the media.
 
 == Description ==
 
