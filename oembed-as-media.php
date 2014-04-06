@@ -11,4 +11,5 @@
 
 define ( 'OEM_TRANSLATE_ID', 'oembedasmedia' );
 
+require_once ABSPATH . WPINC . '/class-oembed.php';
 require_once dirname( __FILE__ ) . '/admin/media-upload.php';

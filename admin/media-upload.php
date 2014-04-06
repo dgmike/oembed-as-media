@@ -18,15 +18,33 @@ add_filter( 'media_upload_tabs', 'oam_add_tab' );
 function create_oembed_as_media_page() {
 	media_upload_header();
 	wp_enqueue_style( 'media' );
-	$post_id = isset($_REQUEST['post_id']) ? intval( $_REQUEST['post_id'] ) : '';
-	$query = http_build_query(
-		array(
-			'type'    => $GLOBALS['type'],
-			'tab'     => 'oembedasmedia',
-			'post_id' => $post_id,
-		)
+	$oam_url = filter_input( INPUT_POST, 'oam_url', FILTER_SANITIZE_URL );
+	// form url
+	$query = array(
+		'type' => $GLOBALS['type'],
+		'tab'  => 'oembedasmedia',
 	);
-	$url = site_url( 'wp-admin/media-upload.php?' . $query, 'admin');
+	if ( isset( $_REQUEST['post_id'] ) ) {
+		$query['post_id'] = intval( $_REQUEST['post_id'] );
+	}
+	$url = site_url(
+		'wp-admin/media-upload.php?' . http_build_query( $query ), 'admin'
+	);
+	// preview
+	$preview = '';
+	if ( isset( $_POST['preview'] ) && $oam_url ) {
+		$preview = $_POST['preview'];
+		try {
+			$oembed = new WP_oEmbed;
+			$preview = $oembed->get_html($oam_url, array(
+				'width' => 400,
+				'height' => 300
+			));
+		} catch ( Exception $e ) {
+			$preview = $e->getMessage();
+		}
+	}
+	// view
 	require dirname( __FILE__ ) . '/media-tab.php';
 }
 
