@@ -1,4 +1,6 @@
 <form action="<?php echo $url; ?>" method="post" class="media-upload-form type-form validate">
+	<input type="hidden" name="_wpnonce" value="<?php echo $nonce; ?>" />
+	<input type="hidden" name="redirect" value="media-upload.php?type=file&tab=library" />
 	<h3 class="media-title"><?php echo _e( 'oEmbed from URL', OEM_TRANSLATE_ID ); ?></h3>
 	<div class="media-item media-blank">
 		<table class="describe">
