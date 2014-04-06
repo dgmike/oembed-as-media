@@ -82,7 +82,7 @@ function oam_oembed( $oam_url, $args = array() ) {
 
 // action
 function oam_add_media() {
-	if ( !$_REQUEST['_wpnonce'] ) {
+	if ( !filter_has_var( INPUT_POST, '_wpnonce' ) ) {
 		return;
 	}
 	if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'oembed-as-media' ) ) {
