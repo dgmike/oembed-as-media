@@ -61,6 +61,7 @@ function insert_oembed_as_media_iframe() {
 
 add_action('media_upload_oembedasmedia', 'insert_oembed_as_media_iframe');
 
+// helper method
 function oam_oembed( $oam_url, $args = array() ) {
 	$oembed = new WP_oEmbed;
 	$provider = $oembed->discover( $oam_url );
