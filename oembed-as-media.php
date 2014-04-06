@@ -9,3 +9,6 @@
  * License: GPLv2 or later
  */
 
+define ( 'OEM_TRANSLATE_ID', 'oembedasmedia' );
+
+require_once dirname( __FILE__ ) . '/admin/media-upload.php';
