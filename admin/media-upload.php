@@ -37,13 +37,11 @@ function create_oembed_as_media_page() {
 	if ( isset( $_POST['preview'] ) && $oam_url ) {
 		$preview = $_POST['preview'];
 		try {
-			$oam_oembed = oam_oembed(
-				$oam_url,
-				array(
-					'width' => 400,
-					'height' => 300
-				)
+			$specifications = array (
+				'width' => 400,
+				'height' => 300
 			);
+			$oam_oembed = oam_oembed( $oam_url, $specifications );
 			if ( !is_string( $oam_oembed ) ) {
 				$preview = $oam_oembed->html;
 			}
@@ -73,7 +71,7 @@ function oam_oembed( $oam_url, $args = array() ) {
 	if ( $provider === false ) {
 		return __( 'No provider found for this URL.', OEM_TRANSLATE_ID );
 	}
-	$response = $oembed->fetch( $provider, $oem_url, $args );
+	$response = $oembed->fetch( $provider, $oam_url, $args );
 	if ( $response === false ) {
 		return __( 'Bad response from the provider for this URL.', OEM_TRANSLATE_ID );
 	}
