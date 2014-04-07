@@ -27,7 +27,7 @@ function create_oembed_as_media_page() {
 		'tab'  => 'oembedasmedia',
 	);
 	if ( isset( $_REQUEST['post_id'] ) ) {
-		$query['post_id'] = intval( $_REQUEST['post_id'] );
+		$post_id = $query['post_id'] = intval( $_REQUEST['post_id'] );
 	}
 	$url = site_url(
 		'wp-admin/media-upload.php?' . http_build_query( $query ), 'admin'
@@ -118,4 +118,19 @@ function oam_add_media() {
 	exit();
 }
 
-add_action( 'init', 'oam_add_media' );
+add_action( 'admin_init', 'oam_add_media' );
+
+// show embed on edit page
+function oam_edit_form_after_title( $post ) {
+    if ( $post->post_type != 'attachment' ) {
+    	return;
+    }
+    $mime = strtolower ( $post->post_mime_type );
+    $mime_prefix = substr ( $mime, 0, 7 );
+    if ( $mime_prefix !== 'oembed/' ) {
+    	return;
+    }
+    echo oam_oembed($post->guid)->html;
+}
+
+add_action( 'edit_form_after_title', 'oam_edit_form_after_title' );
