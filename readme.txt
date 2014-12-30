@@ -1,6 +1,6 @@
 === oEmbed as media ===
 Contributors: dgmike
-Donate link: http://
+Donate link: https://pledgie.com/campaigns/27868
 Tags: media, oembed, youtube, library
 Requires at least: 3.8.1
 Tested up to: 3.8.1
